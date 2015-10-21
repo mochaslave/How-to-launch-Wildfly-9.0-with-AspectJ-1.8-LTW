@@ -7,9 +7,9 @@
 #Run with Eclipse
 Modify VM arguments  
 
-* replace  
+* replace this line  
   `-Djboss.modules.system.pkgs=org.jboss.byteman,org.jboss.logmanager,com.manageengine`
-* add  
+* append this line
   `-javaagent:${ASPECTJ_HOME}/lib/aspectjweaver.jar -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Xbootclasspath/p:${WILDFLY_HOME}/modules/system/layers/base/org/jboss/logmanager/main/jboss-logmanager-2.0.0.Final.jar`
 
 >Hint: This configuration require fill absolute path, in my case:  
@@ -35,4 +35,9 @@ Modify ***${WILDFLY_HOME}***/bin/standalone.conf
 
 ---
 # Test launch
-coming soon
+1. Launch your Wildfly with upon configuration.
+1. Send a http **POST** to http://localhost:8080/cms-scheduler/cron/execute with these parameters.
+   * workflowTypeName=Helloflow
+   * workflowTypeVersion=0.2
+   * cronPattern=*/20 * * * * *
+   >Hint: Recommend use [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop)
